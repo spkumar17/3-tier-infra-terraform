@@ -131,6 +131,7 @@ resource "aws_route_table_association" "publicsubnet1b_association" {
   route_table_id = aws_route_table.public_rt.id
 }
 
+#elasticip  for NAT gateway in the public subnet pub-sub-1a
 resource "aws_eip" "eip-nat-a" {
   domain = "vpc"
 
@@ -141,7 +142,7 @@ resource "aws_eip" "eip-nat-a" {
   }
 }
 
-# allocate elastic ip. this eip will be used for the nat-gateway in the public subnet pub-sub-2-b
+# allocate elastic ip this eip will be used for the nat-gateway in the public subnet pub-sub-1b
 resource "aws_eip" "eip-nat-b" {
   domain = "vpc"
 
@@ -151,7 +152,7 @@ resource "aws_eip" "eip-nat-b" {
   }
 }
 
-#NAT creation and eip allocation
+#NAT creation and eip's allocation for both 1a and 1b
 
 resource "aws_nat_gateway" "nat-a" {
   allocation_id = aws_eip.eip-nat-a.id
@@ -176,3 +177,52 @@ resource "aws_nat_gateway" "nat-b" {
   # to ensure proper ordering, it is recommended to add an explicit dependency
   depends_on = [aws_internet_gateway.igw]
 }
+
+#PRIVATE routetable creation for  1a
+
+resource "aws_route_table" "private_rt_1a" {
+  vpc_id = aws_vpc.myvpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat-a.id
+  }
+
+  
+  tags = {
+    Name = "private_rt_1a"
+  }
+}
+
+#routetable association with private subnet 1a 
+
+resource "aws_route_table_association" "private_subnet_1a_association" {
+  subnet_id = aws_subnet.prisubnet1a.id
+  route_table_id = aws_route_table.private_rt_1a.id
+  
+}
+
+#PRIVATE routetable creation for 1b
+
+resource "aws_route_table" "private_rt_1b" {
+  vpc_id = aws_vpc.myvpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat-b.id
+  }
+
+  
+  tags = {
+    Name = "private_rt_1b"
+  }
+}
+
+#routetable association with private subnet  1b 
+
+resource "aws_route_table_association" "private_subnet_1b_association" {
+  subnet_id = aws_subnet.prisubnet1b.id
+  route_table_id = aws_route_table.private_rt_1b.id
+  
+}
+
