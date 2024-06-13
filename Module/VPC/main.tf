@@ -56,6 +56,7 @@ resource "aws_subnet" "prisubnet1a" {
     vpc_id     = aws_vpc.myvpc.id
     availability_zone = data.aws_availability_zones.available_zones.names[0]
     cidr_block = var.prisub1a_cidr_block
+    map_public_ip_on_launch = false
 
 
 
@@ -68,6 +69,7 @@ resource "aws_subnet" "prisubnet1b" {
     vpc_id     = aws_vpc.myvpc.id
     availability_zone = data.aws_availability_zones.available_zones.names[1]
     cidr_block = var.prisub1b_cidr_block
+    map_public_ip_on_launch = false
 
 
 
@@ -82,6 +84,7 @@ resource "aws_subnet" "secsubnet1a" {
     vpc_id     = aws_vpc.myvpc.id
     availability_zone = data.aws_availability_zones.available_zones.names[0]
     cidr_block = var.secsub1a_cidr_block
+    map_public_ip_on_launch = false
 
 
 
@@ -94,6 +97,7 @@ resource "aws_subnet" "secsubnet1b" {
     vpc_id     = aws_vpc.myvpc.id
     availability_zone = data.aws_availability_zones.available_zones.names[1]
     cidr_block = var.secsub1b_cidr_block
+    map_public_ip_on_launch = false
 
 
 

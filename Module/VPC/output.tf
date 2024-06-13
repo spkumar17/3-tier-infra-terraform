@@ -5,35 +5,6 @@ output "project_name" {
     value = var.project_name
 }
 
-
-# output "vpc_cidr_block" {
-#   value = var.vpc_cidr_block
-# }
-
-# output "pubsub1a_cidr_block" {
-#   value = var.pubsub1a_cidr_block
-# }
-
-# output "pubsub1b_cidr_block" {
-#   value = var.pubsub1b_cidr_block
-# }
-
-# output "prisub1a_cidr_block" {
-#   value = var.prisub1a_cidr_block
-# }
-
-# output "prisub1b_cidr_block" {
-#   value = var.prisub1b_cidr_block
-# }
-
-# output "secsub1a_cidr_block" {
-#   value = var.secsub1a_cidr_block
-# }
-
-# output "secsub1b_cidr_block" {
-#   value = var.secsub1b_cidr_block
-# }
-
 output "igw" {
     value = aws_internet_gateway.igw
 }
