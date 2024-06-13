@@ -12,7 +12,7 @@ variable "publicsubnet1b_id" {
     type = string
   
 }
-variable "lb_sg_id" {
+variable "alb_sg_id" {
     type = string
   
 }
