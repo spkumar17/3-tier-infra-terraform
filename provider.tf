@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = module.myvpc.region
+  region = module.VPC.region
 }
 #Backend Configration
 
