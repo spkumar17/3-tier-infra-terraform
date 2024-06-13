@@ -23,6 +23,7 @@ module "ALB" {
     publicsubnet1b_id = module.VPC.privatesubnet1b_id
     lb_sg_id = module.Resources.lb_sg_id
     project_name=module.VPC.project_name
+    vpc_id        = module.VPC.vpc_id
 
 
 
