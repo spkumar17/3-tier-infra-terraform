@@ -21,11 +21,9 @@ module "ALB" {
     source = "./module/ALB"
     publicsubnet1a_id = module.VPC.publicsubnet1a_id
     publicsubnet1b_id = module.VPC.privatesubnet1b_id
-    lb_sg_id = module.Resources.lb_sg_id
     project_name=module.VPC.project_name
     vpc_id        = module.VPC.vpc_id
-
-
+    alb_sg_id = module.Resources.alb_sg_id
 
 }
 
@@ -33,5 +31,18 @@ module "ALB" {
 module "Resources" {
     source = "./module/Resources"
     vpc_id        = module.VPC.vpc_id
+}
+
+module "ASG" {
+
+    source = "./module/ASG"
+    image_id ="ami-08d6190e60b833cc4"
+    instance_type = "t2.micro"
+    instance_name = "mainservers"
+    asg_sg_id=module.Resources.asg_sg_id
+    privatesubnet1a_id=module.VPC.privatesubnet1a_id
+    privatesubnet1b_id=module.VPC.privatesubnet1b_id
+    aws_iam_instance_profile=module.Resources.aws_iam_instance_profile_name
+
 
 }
