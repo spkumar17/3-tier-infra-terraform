@@ -36,3 +36,34 @@ variable "aws_iam_instance_profile" {
     type=string
   
 }
+
+variable "max_size" {
+    description = "max count that auto scale can increase"
+    type = string
+  
+}
+variable "min_size" {
+    description = "min count that auto scalig will maintain"
+    type = string
+  
+}
+variable "health_check_grace_period" {
+    description = "till this grace time no new instance will be created even of the instance is in unhealthy state"
+    type = string
+}
+variable "health_check_type" {
+    description = "based on which  type auto scale spin up or scale down the instance"
+    type = string
+  
+}
+variable "desired_capacity" {
+
+    description = "capacity that asg maintain aat nrml times"
+    type = string
+  
+}
+variable "project_name" {
+  description = "name of project"
+  type = string
+
+}
