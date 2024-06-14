@@ -67,3 +67,9 @@ variable "project_name" {
   type = string
 
 }
+
+variable "db_instance_endpoint" {
+    description = "RDS endpoint"
+    type = string
+  
+}

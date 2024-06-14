@@ -1,10 +1,15 @@
 output "alb_sg_id" {
-    description = "output of loadbalancer sercurity group id"
+    description = "output of loadbalancer security group id"
     value =aws_security_group.alb_sg.id
 }
 output "asg_sg_id" {
-    description = "output of auto scaling group sercurity group id"
+    description = "output of auto scaling group security group id"
     value = aws_security_group.asg_sg.id
+
+}
+output "rds_sg_id" {
+    description = "output of RDS security group id "
+    value = aws_security_group.rds_sg.id
 
 }
 output "aws_iam_instance_profile_name" {

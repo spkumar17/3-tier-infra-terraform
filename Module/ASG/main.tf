@@ -14,7 +14,9 @@ resource "aws_launch_template" "launch_template" {
     iam_instance_profile {
         name =var.aws_iam_instance_profile
         }
-
+    
+    user_data = base64encode(templatefile("./module/ASG/userdata.sh", { DB_ENDPOINT = var.db_instance_endpoint} )  )
+    
     tags = {
         Name = var.instance_name
     }
@@ -29,6 +31,9 @@ resource "aws_autoscaling_group" "autoscaling_group" {
     desired_capacity          = var.desired_capacity
     force_delete              = true
     vpc_zone_identifier       = [var.privatesubnet1a_id,var.privatesubnet1b_id]
+
+
+
     launch_template {
         id      = aws_launch_template.launch_template.id
         version = aws_launch_template.launch_template.latest_version

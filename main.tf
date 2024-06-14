@@ -49,8 +49,29 @@ module "ASG" {
     privatesubnet1b_id=module.VPC.privatesubnet1b_id
     aws_iam_instance_profile=module.Resources.aws_iam_instance_profile_name
     project_name=module.VPC.project_name
-    
+    db_instance_endpoint=module.RDS.db_instance_endpoint
 
 
 
+}
+module "RDS" {
+    source = "./module/RDS"
+    allocated_storage="20"
+    storage_type = "gp3"
+    engine = "mysql"
+    instance_class="db.t3.medium"
+    engine_version="8.0"
+    username="admin"
+    password ="Devops#21"
+    backup_retention_period = "10"
+    backup_window           = "00:00-03:00"
+    maintenance_window      = "sun:05:00-sun:06:00"
+    securesubnet1a_id=module.VPC.securesubnet1a_id
+    securesubnet1b_id=module.VPC.securesubnet1b_id
+    rds_sg_id=module.Resources.rds_sg_id
+
+
+
+
+  
 }

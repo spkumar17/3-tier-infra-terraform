@@ -54,7 +54,7 @@ resource "aws_security_group" "asg_sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    security_groups = [aws_security_group.alb_sg.id] # security group of the ALB
+    security_groups = [aws_security_group.alb_sg.id] #allow only  security group of the ALB
 
   }
 
@@ -70,6 +70,28 @@ resource "aws_security_group" "asg_sg" {
   }
 }
 
+#security group for RDS 
+resource "aws_security_group" "rds_sg" {
+  name_prefix = "rds-sg-"
+
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [aws_security_group.asg_sg.id] # allow only from security group of the ASG
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-sg"
+  }
+}
 # IAM Role FOR EC2 instance 
 resource "aws_iam_role" "my_launch_template_role" {
   name = "myLaunchTemplateRole"
