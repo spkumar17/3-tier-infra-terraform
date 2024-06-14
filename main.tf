@@ -39,10 +39,18 @@ module "ASG" {
     image_id ="ami-08d6190e60b833cc4"
     instance_type = "t2.micro"
     instance_name = "mainservers"
+    max_size="4"
+    min_size="2"
+    health_check_grace_period="300"
+    health_check_type="ELB"
+    desired_capacity="2"
     asg_sg_id=module.Resources.asg_sg_id
     privatesubnet1a_id=module.VPC.privatesubnet1a_id
     privatesubnet1b_id=module.VPC.privatesubnet1b_id
     aws_iam_instance_profile=module.Resources.aws_iam_instance_profile_name
+    project_name=module.VPC.project_name
+    
+
 
 
 }
