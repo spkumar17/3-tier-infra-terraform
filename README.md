@@ -11,7 +11,7 @@
   }
 
 
-#need to search
+# need to search
 how to connect rds to ec2 using rds endpoints
 how to add userdata from terraform script
 how to use secrets manager for rds
