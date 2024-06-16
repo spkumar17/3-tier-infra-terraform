@@ -7,6 +7,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     }
 }
 resource "aws_db_instance" "db_instance" {
+    db_name = "RDS-db_instance"
     allocated_storage    = var.allocated_storage
     storage_type         = var.storage_type
     engine               = var.engine    #"mysql" or postgras
