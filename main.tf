@@ -1,5 +1,5 @@
 module "VPC" {
-    source = "./module/VPC"
+    source = "./Module/VPC"
     region = "us-east-1"
 
     vpc_cidr_block = "10.0.0.0/16"
@@ -18,7 +18,7 @@ module "VPC" {
 }
 
 module "ALB" {
-    source = "./module/ALB"
+    source = "./Module/ALB"
     publicsubnet1a_id = module.VPC.publicsubnet1a_id
     publicsubnet1b_id = module.VPC.privatesubnet1b_id
     project_name=module.VPC.project_name
@@ -29,13 +29,13 @@ module "ALB" {
 
 
 module "Resources" {
-    source = "./module/Resources"
+    source = "./Module/Resources"
     vpc_id        = module.VPC.vpc_id
 }
 
 module "ASG" {
 
-    source = "./module/ASG"
+    source = "./Module/ASG"
     image_id ="ami-08d6190e60b833cc4"
     instance_type = "t2.micro"
     instance_name = "mainservers"
@@ -55,7 +55,7 @@ module "ASG" {
 
 }
 module "RDS" {
-    source = "./module/RDS"
+    source = "./Module/RDS"
     allocated_storage="20"
     storage_type = "gp3"
     engine = "mysql"
