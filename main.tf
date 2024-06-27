@@ -61,7 +61,7 @@ module "RDS" {
     allocated_storage="20"
     storage_type = "gp3"
     engine = "mysql"
-    instance_class="db.t2.micro"
+    instance_class="db.t3.micro"
     engine_version="8.0"
     username="admin"
     password ="Devops#21"
