@@ -1,5 +1,24 @@
- #!/bin/bash
+#!/bin/bash
 
-# Update package lists and install necessary packages
-apt-get update -y
-apt-get install -y mysql-client
+# Update packages and install necessary tools
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install docker.io containerd git screen -y
+
+# Enable and start the Docker service
+sudo systemctl enable docker.service --now
+
+# Add users to the Docker group
+sudo usermod -aG docker $USER
+sudo usermod -aG docker ubuntu
+
+# Restart the Docker service to apply group changes
+sudo systemctl restart docker.service
+
+# Pull the latest Ubuntu image from Docker Hub
+sudo docker pull prasannakumarsinganamalla431/petclinic:23
+
+# Run an Ubuntu container with MySQL environment variables
+sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
+
+echo "Docker setup and container deployment complete."
