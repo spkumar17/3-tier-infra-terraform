@@ -17,6 +17,11 @@ module "VPC" {
 
 }
 
+module "Resources" {
+    source = "./Module/Resources"
+    vpc_id        = module.VPC.vpc_id
+}
+
 module "ALB" {
     source = "./Module/ALB"
     publicsubnet1a_id = module.VPC.publicsubnet1a_id
@@ -28,10 +33,7 @@ module "ALB" {
 }
 
 
-module "Resources" {
-    source = "./Module/Resources"
-    vpc_id        = module.VPC.vpc_id
-}
+
 
 module "ASG" {
 
