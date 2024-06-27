@@ -72,13 +72,13 @@ resource "aws_security_group" "asg_sg" {
 
 #security group for RDS 
 resource "aws_security_group" "rds_sg" {
-  name_prefix = "rds-sg-"
+  name_prefix = "rds-sg"
 
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.asg_sg.id] # allow only from security group of the ASG
+    security_groups = [aws_security_group.asg_sg.id] # allow only from security group of the ASG
   }
 
   egress {
