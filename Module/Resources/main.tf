@@ -72,8 +72,8 @@ resource "aws_security_group" "asg_sg" {
 
 #security group for RDS 
 resource "aws_security_group" "rds_sg" {
-  name_prefix = "rds-sg-"
-
+  name_prefix = "rds-sg"
+  vpc_id      = var.vpc_id
   ingress {
     from_port   = 3306
     to_port     = 3306
