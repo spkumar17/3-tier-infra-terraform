@@ -202,30 +202,8 @@ resource "aws_iam_policy" "dynamodb_policy" {
   })
 }
 
-# Define IAM Role for EC2 Instance
-resource "aws_iam_role" "EC2SessionManagerRole" {
-  name = "EC2SessionManager"
-
-  assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "ec2.amazonaws.com"
-        },
-        "Action": "sts:AssumeRole"
-      }
-    ]
-  })
-}
 
 
-# Attach IAM Policy for Session Manager Access to the Role
-resource "aws_iam_role_policy_attachment" "instance_role_policy_attachment" {
-  role       = aws_iam_role.my_launch_template_role.name
-  policy_arn = aws_iam_policy.EC2SessionManagerRole.arn
-}
 
 resource "aws_iam_policy" "rds_policy" {
   name = "RDSPolicy"
@@ -268,6 +246,7 @@ resource "aws_iam_role_policy_attachment" "attach_rds_policy" {
   role       = aws_iam_role.my_launch_template_role.name
   policy_arn = aws_iam_policy.rds_policy.arn
 }
+
 
 resource "aws_iam_instance_profile" "my_launch_template_instance_profile" {
   name = "myLaunchTemplateInstanceProfile"
