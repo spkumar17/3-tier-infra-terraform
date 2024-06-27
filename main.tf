@@ -38,7 +38,7 @@ module "ALB" {
 module "ASG" {
 
     source = "./Module/ASG"
-    image_id ="ami-08d6190e60b833cc4"
+    image_id ="ami-0f65727002ec0c2f8"
     instance_type = "t2.micro"
     instance_name = "mainservers"
     max_size="4"
