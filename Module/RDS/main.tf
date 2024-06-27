@@ -28,7 +28,7 @@ resource "aws_db_instance" "db_instance" {
     maintenance_window      = var.maintenance_window
 
     tags = {
-        Name ="RDS_db_instance"
+        Name ="RDSdbinstance"
     }
 }
 
