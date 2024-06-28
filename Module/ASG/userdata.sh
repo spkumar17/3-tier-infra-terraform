@@ -19,7 +19,7 @@ sudo systemctl restart docker.service
 sleep 5
 
 # Pull the latest Ubuntu image from Docker Hub
-sudo docker pull prasannakumarsinganamalla431/petclinic:23
+sudo docker pull prasannakumarsinganamalla431/petclinic:24
 sleep 5
 
 # Run an Ubuntu container with MySQL environment variables
