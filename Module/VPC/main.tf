@@ -163,7 +163,7 @@ resource "aws_eip" "eip-nat-b" {
 
 resource "aws_nat_gateway" "nat-a" {
   allocation_id = aws_eip.eip-nat-a.id
-  subnet_id     = aws_subnet.prisubnet1a.id 
+  subnet_id     = aws_subnet.pubsubnet1a.id 
 
   tags   = {
     Name = "nat-a"
@@ -175,7 +175,7 @@ resource "aws_nat_gateway" "nat-a" {
 
 resource "aws_nat_gateway" "nat-b" {
   allocation_id = aws_eip.eip-nat-b.id
-  subnet_id     = aws_subnet.prisubnet1b.id 
+  subnet_id     = aws_subnet.pubsubnet1b.id 
 
   tags   = {
     Name = "nat-b"
