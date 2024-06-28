@@ -22,7 +22,7 @@ sleep 5
 sudo docker pull prasannakumarsinganamalla431/petclinic:23
 sleep 5
 
-export MYSQL_URL="${var.db_instance_endpoint}"
+export MYSQL_URL="${MYSQL_URL}"
 
 # Run an Ubuntu container with MySQL environment variables
 sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
