@@ -244,3 +244,75 @@ resource "aws_vpc_endpoint" "ssm" {
     Name = "ssm-endpoint"
   }
 }
+#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+resource "aws_network_acl" "my_nacl" {
+  vpc_id = aws_vpc.myvpc.id
+
+  # Inbound rules
+  ingress {
+    rule_no    = 100
+    protocol   = "tcp"
+    action= "allow"
+
+    cidr_block = "0.0.0.0/0"
+    from_port  = 443
+    to_port    = 443
+  }
+
+  ingress {
+    rule_no    = 200
+    protocol   = "tcp"
+    action= "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 80
+    to_port    = 80
+  }
+
+  ingress {
+    rule_no    = 300
+    protocol   = "tcp"
+    action= "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
+  }
+
+  # Outbound rules
+  egress {
+    rule_no    = 100
+    protocol   = "tcp"
+    action= "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 443
+    to_port    = 443
+  }
+
+  egress {
+    rule_no    = 200
+    protocol   = "tcp"
+    action= "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 80
+    to_port    = 80
+  }
+
+  egress {
+    rule_no    = 300
+    protocol   = "tcp"
+    action= "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
+  }
+}
+
+resource "aws_network_acl_association" "privatesubnet1a_assoc" {
+  subnet_id = aws_subnet.prisubnet1a.id
+  network_acl_id = aws_network_acl.my_nacl.id
+}
+
+resource "aws_network_acl_association" "privatesubnet1b_assoc" {
+  subnet_id = aws_subnet.prisubnet1b.id
+  network_acl_id = aws_network_acl.my_nacl.id
+}
