@@ -1,7 +1,6 @@
 variable "image_id"{
     description = "image id"
-    type= string
-    default = "ami-08d6190e60b833cc4"
+    type= "string"
 
 }    
 variable "instance_type" {
@@ -72,4 +71,9 @@ variable "db_instance_endpoint" {
     description = "RDS endpoint"
     type = string
   
+}
+
+variable "MYSQL_URL"{
+    description= "holds the RDS endpoint"
+    type= string
 }
