@@ -1,3 +1,6 @@
+
+data "aws_region" "current" {}  # to know the current aws region
+
 #myvpc
 resource "aws_vpc" "myvpc" {
   cidr_block       = var.vpc_cidr_block
@@ -233,7 +236,7 @@ resource "aws_route_table_association" "private_subnet_1b_association" {
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id            = aws_vpc.myvpc.id
   service_name      = "com.amazonaws.${data.aws_region.current.name}.ssm"
-  subnet_ids        = [aws_subnet.prisubnet1b.id,aws_subnet.prisubnet1b.id]
+  subnet_ids        = [aws_subnet.prisubnet1a.id,aws_subnet.prisubnet1b.id]
   vpc_endpoint_type = "Interface"
 
   security_group_ids = [var.ssm_endpoint_sg_id]
