@@ -9,11 +9,15 @@ resource "aws_launch_template" "launch_template" {
 
     network_interfaces {
         associate_public_ip_address = false
+        device_index                = 0  # need to add Unique index for each interface
+        network_card_index          = 0  # need to add Unique index for each interface
         subnet_id                   = var.privatesubnet1a_id #subnet of 1 frist az ID
         security_groups             = [var.asg_sg_id]# security group ID
     }
     network_interfaces {
         associate_public_ip_address = false
+        device_index                = 1  # need to add Unique index for each interface
+        network_card_index          = 1  # need to add Unique index for each interface 
         subnet_id                   = var.privatesubnet1b_id #subnet of secound az ID
         security_groups             = [var.asg_sg_id]# security group ID
     }
