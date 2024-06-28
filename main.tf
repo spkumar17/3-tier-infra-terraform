@@ -54,9 +54,7 @@ module "ASG" {
     aws_iam_instance_profile=module.Resources.aws_iam_instance_profile_name
     project_name=module.VPC.project_name
     db_instance_endpoint=module.RDS.db_instance_endpoint
-    MYSQL_URL="MYSQL_URL"
-
-
+    MYSQL_URL="II"
 }
 module "RDS" {
     source = "./Module/RDS"
