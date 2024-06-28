@@ -23,7 +23,8 @@ sudo docker pull prasannakumarsinganamalla431/petclinic:23
 sleep 5
 
 # Run an Ubuntu container with MySQL environment variables
-sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
+#sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
+
 sleep 5
 
 echo "Docker setup and container deployment complete."
