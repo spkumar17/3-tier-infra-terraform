@@ -71,10 +71,5 @@ module "RDS" {
     securesubnet1a_id=module.VPC.securesubnet1a_id
     securesubnet1b_id=module.VPC.securesubnet1b_id
     rds_sg_id=module.Resources.rds_sg_id
-
-
-
-
-
-  
+ 
 }
