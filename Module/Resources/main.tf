@@ -106,7 +106,7 @@ resource "aws_security_group" "ssm_endpoint_sg" {
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = [aws_security_group.your_asg_sg.id]  # Adjust as needed for your ASG or other trusted sources
+    security_groups = [aws_security_group.asg_sg.id]  # Adjust as needed for your ASG or other trusted sources
   }
 
   egress {
