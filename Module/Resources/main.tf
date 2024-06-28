@@ -107,14 +107,14 @@ resource "aws_security_group" "ssm_endpoint_sg" {
     to_port         = 443
     protocol        = "tcp"
     #security_groups = [aws_security_group.asg_sg.id] 
-    cidr_blocks       = ["0.0.0.0/0"]
+    cidr_blocks       = ["10.0.0.0/16"]
 
   }
 
   egress {
     from_port       = 443
     to_port         = 443
-    protocol        = "-1"
+    protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
   }
 
