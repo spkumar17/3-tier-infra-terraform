@@ -1,8 +1,9 @@
 !/bin/bash
-# Install the SSM agent (Amazon Linux 2 example)
-sudo yum install -y amazon-ssm-agent
-sudo systemctl enable amazon-ssm-agent
-sudo systemctl start amazon-ssm-agent
+sudo snap install amazon-ssm-agent --classic
+
+# Enable and start the SSM Agent
+sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
+sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
 
 # Update packages and install necessary tools
 sudo apt update -y
@@ -29,7 +30,7 @@ sleep 5
 export MYSQL_URL="${MYSQL_URL}"
 
 # Run an Ubuntu container with MySQL environment variables
-#sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
+sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
 
 sleep 5
 
