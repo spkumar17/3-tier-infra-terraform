@@ -1,6 +1,6 @@
 variable "image_id"{
     description = "image id"
-    type= "string"
+    type= string
 
 }    
 variable "instance_type" {
