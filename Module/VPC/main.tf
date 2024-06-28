@@ -236,7 +236,7 @@ resource "aws_vpc_endpoint" "ssm" {
   subnet_ids        = [aws_subnet.prisubnet1b.id,aws_subnet.prisubnet1b.id]
   vpc_endpoint_type = "Interface"
 
-  security_group_ids = [ssm_endpoint_sg_id]
+  security_group_ids = [var.ssm_endpoint_sg_id]
   tags = {
     Name = "ssm-endpoint"
   }

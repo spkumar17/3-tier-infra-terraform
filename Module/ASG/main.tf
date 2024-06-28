@@ -9,20 +9,27 @@ resource "aws_launch_template" "launch_template" {
 
     network_interfaces {
         associate_public_ip_address = false
-        subnet_id                   = [var.privatesubnet1a_id,var.privatesubnet1b_id] # Replace with your subnet ID
+        subnet_id                   = [var.privatesubnet1a_id] #subnet of 1 frist az ID
+        security_groups             = [var.asg_sg_id]# security group ID
+    }
+    network_interfaces {
+        associate_public_ip_address = false
+        subnet_id                   = [var.privatesubnet1b_id] #subnet of secound az ID
         security_groups             = [var.asg_sg_id]# security group ID
     }
     iam_instance_profile {
         name =var.aws_iam_instance_profile
         }
     
-    user_data = base64encode(templatefile("./module/ASG/userdata.sh", { MYSQL_URL =var.db_instance_endpoint} )  )
+    user_data = base64encode(templatefile("./module/ASG/userdata.sh", { MYSQL_URL=var.db_instance_endpoint} )  )
     
     tags = {
         Name = var.instance_name
     }
 
 }
+
+
 resource "aws_autoscaling_group" "autoscaling_group" {
     name                      = "${var.project_name}-asg"
     max_size                  = var.max_size
