@@ -1,4 +1,8 @@
-#!/bin/bash
+!/bin/bash
+# Install the SSM agent (Amazon Linux 2 example)
+sudo yum install -y amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+sudo systemctl start amazon-ssm-agent
 
 # Update packages and install necessary tools
 sudo apt update -y
