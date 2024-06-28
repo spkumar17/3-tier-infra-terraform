@@ -18,15 +18,7 @@ resource "aws_security_group" "alb_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  ingress {
-    description = "http access"
-    from_port   = 8888
-    to_port     = 8888
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-
+  
   egress {
     from_port   = 0
     to_port     = 0
@@ -56,14 +48,7 @@ resource "aws_security_group" "asg_sg" {
 
 
   }
-  ingress {
-    description = "http access"
-    from_port   = 8888
-    to_port     = 8888
-    protocol    = "tcp"
-    security_groups = [aws_security_group.alb_sg.id] # security group of the ALB
-
-  }
+  
 
 
   ingress {
@@ -109,6 +94,34 @@ resource "aws_security_group" "rds_sg" {
     Name = "rds-sg"
   }
 }
+
+#security group for ssm vpc endpoint
+resource "aws_security_group" "ssm_endpoint_sg" {
+  name        = "ssm-endpoint-security-group"
+  description = "Allow access to SSM VPC endpoint"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description     = "Allow SSM access"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.your_asg_sg.id]  # Adjust as needed for your ASG or other trusted sources
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "ssm-endpoint-sg"
+  }
+}
+
+
 # IAM Role FOR EC2 instance 
 resource "aws_iam_role" "my_launch_template_role" {
   name = "myLaunchTemplateRole"
@@ -157,6 +170,7 @@ resource "aws_iam_policy" "ssm_policy" {
       {
         Effect   = "Allow",
         Action   = [
+          
           "ssmmessages:CreateControlChannel",
           "ssmmessages:CreateDataChannel",
           "ssmmessages:OpenControlChannel",

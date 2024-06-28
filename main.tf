@@ -14,6 +14,8 @@ module "VPC" {
     prisub1b_cidr_block="10.0.4.0/24"
     secsub1a_cidr_block ="10.0.5.0/24"
     secsub1b_cidr_block="10.0.6.0/24"
+    ssm_endpoint_sg_id=module.Resources.ssm_endpoint_sg_id
+
 
 }
 
@@ -71,6 +73,7 @@ module "RDS" {
     securesubnet1a_id=module.VPC.securesubnet1a_id
     securesubnet1b_id=module.VPC.securesubnet1b_id
     rds_sg_id=module.Resources.rds_sg_id
+
 
 
 

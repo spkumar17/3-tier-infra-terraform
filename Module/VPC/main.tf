@@ -230,3 +230,14 @@ resource "aws_route_table_association" "private_subnet_1b_association" {
   
 }
 
+resource "aws_vpc_endpoint" "ssm" {
+  vpc_id            = aws_vpc.myvpc.id
+  service_name      = "com.amazonaws.us-west-2.ssm"
+  subnet_ids        = [aws_subnet.prisubnet1b.id,aws_subnet.prisubnet1b.id]
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [ssm_endpoint_sg_id]
+  tags = {
+    Name = "ssm-endpoint"
+  }
+}
