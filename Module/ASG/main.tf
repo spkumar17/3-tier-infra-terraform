@@ -2,13 +2,14 @@ resource "aws_launch_template" "launch_template" {
     name_prefix   = "${var.project_name}-launch_template"
     image_id = var.image_id
     instance_type = var.instance_type
+    key_name = "ssm"
     monitoring {
         enabled = true
     }
 
     network_interfaces {
         associate_public_ip_address = false
-        subnet_id                   = var.privatesubnet1a_id # Replace with your subnet ID
+        subnet_id                   = [var.privatesubnet1a_id,var.privatesubnet1b_id] # Replace with your subnet ID
         security_groups             = [var.asg_sg_id]# security group ID
     }
     iam_instance_profile {
