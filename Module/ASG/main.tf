@@ -26,7 +26,7 @@ resource "aws_launch_template" "launch_template" {
         name =var.aws_iam_instance_profile
         }
     
-    user_data = base64encode(templatefile("./module/ASG/userdata.sh.tpl", { MYSQL_URL={var.MYSQL_URL} } ))
+    user_data = base64encode(templatefile("./module/ASG/userdata.sh.tpl", { MYSQL_URL=var.MYSQL_URL } ))
     tags = {
         Name = var.instance_name
     }
