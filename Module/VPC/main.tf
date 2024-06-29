@@ -232,15 +232,34 @@ resource "aws_route_table_association" "private_subnet_1b_association" {
   route_table_id = aws_route_table.private_rt_1b.id
   
 }
-
+/*
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id            = aws_vpc.myvpc.id
   service_name      = "com.amazonaws.${data.aws_region.current.name}.ssm"
   subnet_ids        = [aws_subnet.prisubnet1a.id,aws_subnet.prisubnet1b.id]
   vpc_endpoint_type = "Interface"
-
+  private_dns_enabled = true
   security_group_ids = [var.ssm_endpoint_sg_id]
   tags = {
     Name = "ssm-endpoint"
   }
 }
+
+resource "aws_vpc_endpoint" "ssmmessages" {
+  vpc_id            = aws_vpc.myvpc.id
+  service_name      = "com.amazonaws.${data.aws_region.current.name}.ssmmessages"
+    vpc_endpoint_type = "Interface"
+  private_dns_enabled = true
+  security_group_ids = [var.ssm_endpoint_sg_id]
+  subnet_ids        = [aws_subnet.prisubnet1a.id,aws_subnet.prisubnet1b.id]
+}
+
+resource "aws_vpc_endpoint" "ec2messages" {
+  vpc_id            = aws_vpc.myvpc.id
+  service_name      = "com.amazonaws.${data.aws_region.current.name}.ec2messages"
+  vpc_endpoint_type = "Interface"
+  private_dns_enabled = true
+  security_group_ids = [var.ssm_endpoint_sg_id]
+  subnet_ids        = [aws_subnet.prisubnet1a.id,aws_subnet.prisubnet1b.id]
+}
+*/
