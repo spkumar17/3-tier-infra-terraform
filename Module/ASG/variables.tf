@@ -67,13 +67,8 @@ variable "project_name" {
 
 }
 
-variable "db_instance_endpoint" {
-    description = "RDS endpoint"
-    type = string
-  
-}
 
-variable "MYSQL_URL"{
+variable "db_instance_endpoint"{
     description= "holds the RDS endpoint"
     type= string
 }

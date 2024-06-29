@@ -20,4 +20,4 @@ sudo systemctl restart docker
 sudo docker version
 
 # Run Docker container with environment variables
-sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${MYSQL_URL}:3306/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
+sudo docker run -d --name petclinic -e MYSQL_URL=jdbc:mysql://${db_instance_endpoint}:3306/petclinic -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=petclinic -p 8888:8888 prasannakumarsinganamalla431/petclinic:23
