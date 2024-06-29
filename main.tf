@@ -27,7 +27,7 @@ module "Resources" {
 module "ALB" {
     source = "./Module/ALB"
     publicsubnet1a_id = module.VPC.publicsubnet1a_id
-    publicsubnet1b_id = module.VPC.privatesubnet1b_id
+    publicsubnet1b_id = module.VPC.prublicsubnet1b_id
     project_name=module.VPC.project_name
     vpc_id        = module.VPC.vpc_id
     alb_sg_id = module.Resources.alb_sg_id
