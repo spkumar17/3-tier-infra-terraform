@@ -53,8 +53,8 @@ module "ASG" {
     privatesubnet1b_id=module.VPC.privatesubnet1b_id
     aws_iam_instance_profile=module.Resources.aws_iam_instance_profile_name
     project_name=module.VPC.project_name
-    db_instance_endpoint=module.RDS.db_instance_endpoint
-    MYSQL_URL = module.RDS.db_instance_endpoint
+    MYSQL_URL = module.RDS.MYSQL_URL
+    db_instance_endpoint = module.RDS.MYSQL_URL
 }
 module "RDS" {
     source = "./Module/RDS"
