@@ -43,7 +43,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
     desired_capacity          = var.desired_capacity
     force_delete              = true
     vpc_zone_identifier       = [var.privatesubnet1a_id,var.privatesubnet1b_id]
-
+    target_group_arns = [var.alb_target_group_arn]
 
 
     launch_template {

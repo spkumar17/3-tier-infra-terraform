@@ -72,3 +72,7 @@ variable "db_instance_endpoint"{
     description= "holds the RDS endpoint"
     type= string
 }
+
+variable "alb_target_group_arn"{
+    type=string
+}
