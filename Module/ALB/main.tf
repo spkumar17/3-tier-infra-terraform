@@ -33,7 +33,7 @@ resource "aws_lb_listener" "alb_http_listener" {
 ## create target group
 
 resource "aws_lb_target_group" "alb_target_group" {
-  name        = "${var.project_name}-tg"
+  name        = "${var.project_name}-tg1"
   target_type = "instance"
   port        = 80
   protocol    = "HTTP"
