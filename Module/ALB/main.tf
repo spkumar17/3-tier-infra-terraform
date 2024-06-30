@@ -9,9 +9,9 @@ resource "aws_lb_target_group" "alb_target_group" {
 
   health_check {
     enabled             = true
-    interval            = 300
+    interval            = 30
     path                = "/"
-    timeout             = 60
+    timeout             = 10 #timeout must be smaller than intrvel
     matcher             = 200
     healthy_threshold   = 2
     unhealthy_threshold = 5
