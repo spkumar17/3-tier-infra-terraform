@@ -54,7 +54,3 @@ variable "secsub1b_cidr_block" {
   type = string
   default = "10.0.6.0/24"
 }
-
-variable "ssm_endpoint_sg_id" {
-  type=string 
-}
