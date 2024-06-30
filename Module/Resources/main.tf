@@ -94,7 +94,7 @@ resource "aws_security_group" "rds_sg" {
     Name = "rds-sg"
   }
 }
-
+/*
 #security group for ssm vpc endpoint
 resource "aws_security_group" "ssm_endpoint_sg" {
   name        = "ssm-endpoint-security-group"
@@ -122,7 +122,7 @@ resource "aws_security_group" "ssm_endpoint_sg" {
     Name = "ssm-endpoint-sg"
   }
 }
-
+*/
 
 # IAM Role FOR EC2 instance 
 resource "aws_iam_role" "my_launch_template_role" {
