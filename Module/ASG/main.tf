@@ -26,7 +26,7 @@ resource "aws_launch_template" "launch_template" {
         name =var.aws_iam_instance_profile
         }
     
-    user_data = base64encode(templatefile("./module/ASG/userdata.sh", { db_instance_endpoint=var.db_instance_endpoint } ))
+    user_data = base64encode(templatefile("./module/ASG/userdata.tftpl", { db_instance_endpoint=var.db_instance_endpoint } ))
     tags = {
         Name = var.instance_name
     }
