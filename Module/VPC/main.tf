@@ -232,6 +232,60 @@ resource "aws_route_table_association" "private_subnet_1b_association" {
   route_table_id = aws_route_table.private_rt_1b.id
   
 }
+
+# creating S3 Bucket to store VPC flow logs 
+
+resource "aws_s3_bucket" "vpc_flow_logs" {
+  bucket = "${var.project_name}-vpc-flow-logs"
+
+  tags = {
+    Name = "${var.project_name}-vpc-flow-logs"
+  }
+}
+
+resource "aws_iam_role" "vpc_flow_log_role" {
+  name = "${var.project_name}-vpc-flow-log-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Principal = {
+          Service = "vpc-flow-logs.amazonaws.com"
+        }
+        Effect = "Allow"
+        Sid    = ""
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_policy" "vpc_flow_log_policy" {
+  name        = "${var.project_name}-vpc-flow-log-policy"
+  
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:PutObjectAcl"
+        ]
+        Resource = "${aws_s3_bucket.vpc_flow_logs.arn}/*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_ssm_policy" {
+  
+  role       = aws_iam_role.vpc_flow_log_role.name
+  policy_arn = aws_iam_policy.vpc_flow_log_policy.arn
+}
+
 /*
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id            = aws_vpc.myvpc.id
