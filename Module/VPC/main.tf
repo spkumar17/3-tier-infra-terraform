@@ -1,4 +1,3 @@
-
 data "aws_region" "current" {}  # to know the current aws region
 
 #myvpc
